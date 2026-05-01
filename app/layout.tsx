@@ -1,44 +1,47 @@
-import type { Metadata } from 'next'
-import { Inter, Cormorant_Garamond } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import { CartProvider } from '@/components/cart-provider'
-import { CartDrawer } from '@/components/cart-drawer'
-import './globals.css'
+import type { Metadata } from "next"
+import { Inter, Playfair_Display } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import { Suspense } from "react"
+import { CartProvider } from "@/components/cart-context"
+import { FloatingCart } from "@/components/floating-cart"
+import { SiteHeader } from "@/components/site-header"
+import { SiteFooter } from "@/components/site-footer"
+import { Toaster } from "@/components/ui/sonner"
+import "./globals.css"
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
 })
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  variable: '--font-cormorant',
-  weight: ['300', '400', '500', '600'],
-  display: 'swap',
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
-  title: 'Marea — Mariscos del Pacífico',
+  title: "Chifa Fuyao — Cocina Chino-Peruana Auténtica",
   description:
-    'Mariscos frescos, capturados a diario por pescadores artesanales. Restaurante y mercado especializado en productos del mar.',
-  generator: 'v0.app',
+    "Disfruta de los sabores tradicionales del Chifa Fuyao. Arroces chaufa, tallarines, platos al wok y sopas preparadas al estilo cantonés. Pide delivery o recoge en tienda.",
+  generator: "v0.app",
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
+        url: "/icon-light-32x32.png",
+        media: "(prefers-color-scheme: light)",
       },
       {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
+        url: "/icon-dark-32x32.png",
+        media: "(prefers-color-scheme: dark)",
       },
       {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: "/icon.svg",
+        type: "image/svg+xml",
       },
     ],
-    apple: '/apple-icon.png',
+    apple: "/apple-icon.png",
   },
 }
 
@@ -48,16 +51,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="es"
-      className={`${inter.variable} ${cormorant.variable} bg-background`}
-    >
-      <body className="font-sans antialiased">
+    <html lang="es" className={`${inter.variable} ${playfair.variable} bg-background`}>
+      <body className="font-sans antialiased bg-background text-foreground">
         <CartProvider>
-          {children}
-          <CartDrawer />
+          <Suspense fallback={null}>
+            <SiteHeader />
+            <main className="min-h-[calc(100vh-4rem)]">{children}</main>
+            <SiteFooter />
+            <FloatingCart />
+          </Suspense>
         </CartProvider>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Toaster richColors position="top-center" />
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   )

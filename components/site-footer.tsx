@@ -1,92 +1,110 @@
+import Link from "next/link"
+import { Facebook, Instagram, MapPin, Phone, Clock } from "lucide-react"
+
 export function SiteFooter() {
   return (
-    <footer className="bg-foreground text-background">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <span className="font-serif text-3xl font-medium">Marea</span>
-            <p className="mt-4 max-w-sm font-light leading-relaxed text-background/70">
-              Mariscos del Pacífico, capturados con respeto y servidos con
-              oficio. Una historia que renace cada mañana con la marea.
-            </p>
-          </div>
-
-          <FooterColumn
-            title="Visítanos"
-            items={[
-              "Av. del Faro 1820",
-              "Caleta Marina",
-              "+56 2 2987 6543",
-              "hola@marea.cl",
-            ]}
-          />
-
-          <FooterColumn
-            title="Navegar"
-            items={[
-              { label: "Filosofía", href: "#filosofia" },
-              { label: "Especialidades", href: "#especialidades" },
-              { label: "Mercado", href: "#mercado" },
-              { label: "Historia", href: "#historia" },
-              { label: "Reservar", href: "#reservar" },
-            ]}
-          />
-
-          <FooterColumn
-            title="Síguenos"
-            items={[
-              { label: "Instagram", href: "#" },
-              { label: "Facebook", href: "#" },
-              { label: "Newsletter", href: "#" },
-            ]}
-          />
+    <footer className="mt-20 border-t border-border bg-secondary/40">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-4">
+        <div className="space-y-3">
+          <Link href="/" className="flex items-center gap-3">
+            <div
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red text-white"
+              aria-hidden
+            >
+              <span className="font-serif text-2xl leading-none">福</span>
+            </div>
+            <div className="leading-tight">
+              <p className="font-serif text-2xl font-bold">Fuyao</p>
+              <p className="text-[10px] font-semibold tracking-[0.2em] text-brand-gold-dark">
+                CHIFA
+              </p>
+            </div>
+          </Link>
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            Cocina chino-peruana auténtica al wok. Sabores tradicionales preparados con
+            ingredientes frescos cada día.
+          </p>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-background/15 pt-8 md:flex-row md:items-center md:justify-between">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-background/50">
-            © {new Date().getFullYear()} Marea · Todos los derechos reservados
-          </p>
-          <div className="flex gap-6 font-mono text-xs uppercase tracking-[0.2em] text-background/50">
-            <a href="#" className="hover:text-background">
-              Privacidad
+        <div>
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+            Navegación
+          </h3>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li>
+              <Link href="/" className="hover:text-brand-red">
+                Inicio
+              </Link>
+            </li>
+            <li>
+              <Link href="/carta" className="hover:text-brand-red">
+                Carta
+              </Link>
+            </li>
+            <li>
+              <Link href="/locales" className="hover:text-brand-red">
+                Locales
+              </Link>
+            </li>
+            <li>
+              <Link href="/pedido" className="hover:text-brand-red">
+                Pedido
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+            Contacto
+          </h3>
+          <ul className="space-y-3 text-sm text-muted-foreground">
+            <li className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
+              <span>Av. Los Próceres 1450, Surco — Lima</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
+              <a href="tel:+51999999998" className="hover:text-brand-red">
+                +51 999 999 998
+              </a>
+            </li>
+            <li className="flex items-start gap-2">
+              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
+              <span>Lun a Dom · 11:30 am — 11:00 pm</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+            Síguenos
+          </h3>
+          <div className="flex gap-3">
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:border-brand-red hover:text-brand-red"
+            >
+              <Facebook className="h-4 w-4" />
             </a>
-            <a href="#" className="hover:text-background">
-              Términos
+            <a
+              href="#"
+              aria-label="Instagram"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:border-brand-red hover:text-brand-red"
+            >
+              <Instagram className="h-4 w-4" />
             </a>
           </div>
         </div>
       </div>
+
+      <div className="border-t border-border">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-muted-foreground sm:flex-row">
+          <p>© {new Date().getFullYear()} Chifa Fuyao. Todos los derechos reservados.</p>
+          <p>Hecho con sazón al wok 🥢</p>
+        </div>
+      </div>
     </footer>
-  )
-}
-
-type Item = string | { label: string; href: string }
-
-function FooterColumn({ title, items }: { title: string; items: Item[] }) {
-  return (
-    <div className="flex flex-col gap-4 md:col-span-2">
-      <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-background/50">
-        {title}
-      </span>
-      <ul className="flex flex-col gap-2 font-light text-background/85">
-        {items.map((item, i) => {
-          const isLink = typeof item !== "string"
-          return (
-            <li key={i}>
-              {isLink ? (
-                <a
-                  href={item.href}
-                  className="transition-colors hover:text-background"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <span>{item}</span>
-              )}
-            </li>
-          )
-        })}
-      </ul>
-    </div>
   )
 }

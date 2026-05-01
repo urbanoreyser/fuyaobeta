@@ -1,25 +1,15 @@
-import { SiteNavbar } from "@/components/site-navbar"
-import { HeroSection } from "@/components/hero-section"
-import { PhilosophySection } from "@/components/philosophy-section"
-import { SpecialtiesSection } from "@/components/specialties-section"
-import { MarketSection } from "@/components/market-section"
+import { HeroSlider } from "@/components/hero-slider"
+import { PopularDishes } from "@/components/popular-dishes"
 import { StorySection } from "@/components/story-section"
-import { ReservationSection } from "@/components/reservation-section"
-import { SiteFooter } from "@/components/site-footer"
+import { ValueProps } from "@/components/value-props"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="relative flex min-h-screen flex-col bg-background">
-      <SiteNavbar />
-      <main className="flex-1">
-        <HeroSection />
-        <PhilosophySection />
-        <SpecialtiesSection />
-        <MarketSection />
-        <StorySection />
-        <ReservationSection />
-      </main>
-      <SiteFooter />
-    </div>
+    <>
+      <HeroSlider />
+      <ValueProps />
+      <PopularDishes />
+      <StorySection />
+    </>
   )
 }

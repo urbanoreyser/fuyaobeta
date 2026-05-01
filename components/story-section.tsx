@@ -1,60 +1,76 @@
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+
 export function StorySection() {
   return (
-    <section
-      id="historia"
-      className="border-b border-border bg-background py-24 md:py-32"
-    >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
-        <div className="lg:col-span-5">
-          <div className="aspect-[4/5] overflow-hidden bg-secondary">
-            <img
-              src="/fisherman.jpg"
-              alt="Pescador artesanal sosteniendo la pesca del día"
-              className="h-full w-full object-cover grayscale"
-            />
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:py-20">
+      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="relative aspect-[5/4] overflow-hidden rounded-3xl border border-border shadow-sm">
+          <Image
+            src="/dishes/combinado-tallarines-chaufa.jpg"
+            alt="Plato combinado de tallarín saltado con arroz chaufa"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
+          <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3 rounded-2xl bg-white/95 p-4 shadow-lg backdrop-blur">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red text-white" aria-hidden>
+              <span className="font-serif text-2xl leading-none">福</span>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-gold-dark">
+                Desde 1998
+              </p>
+              <p className="font-serif text-lg font-bold leading-tight">
+                Tradición de tres generaciones
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 lg:col-span-7 lg:pl-8">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            Nuestra historia · Desde 2003
-          </span>
-          <h2 className="font-serif text-4xl font-light leading-tight tracking-tight text-balance md:text-5xl lg:text-6xl">
-            Tres generaciones aprendiendo a leer el mar.
+        <div>
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-red">
+            Nuestra historia
+          </p>
+          <h2 className="font-serif text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl text-pretty">
+            Sabor cantonés con corazón peruano
           </h2>
-          <div className="flex flex-col gap-4 font-light leading-relaxed text-muted-foreground text-pretty md:text-lg">
-            <p>
-              Marea nació en una pequeña caleta del norte, donde nuestro
-              fundador don Esteban aprendió a distinguir un buen pescado por el
-              brillo de sus ojos y la firmeza de su carne.
-            </p>
-            <p>
-              Hoy somos un equipo de cocineros, pescadores y curadores
-              obsesionados con un solo objetivo: que cada comensal entienda, en
-              un solo bocado, por qué el mar es un lugar sagrado.
-            </p>
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            En Chifa Fuyao mantenemos viva la tradición del wok familiar. Cada chaufa, cada
+            tallarín y cada sopa lleva el equilibrio justo entre el sabor cantonés y los
+            ingredientes peruanos que tanto amamos. Lo preparamos al momento, como lo hacían
+            los abuelos al llegar a Lima hace más de 25 años.
+          </p>
+
+          <div className="mt-8 grid grid-cols-3 gap-6">
+            <div>
+              <p className="font-serif text-3xl font-bold text-brand-red">25+</p>
+              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Años de sazón
+              </p>
+            </div>
+            <div>
+              <p className="font-serif text-3xl font-bold text-brand-red">12</p>
+              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Platos en carta
+              </p>
+            </div>
+            <div>
+              <p className="font-serif text-3xl font-bold text-brand-red">4.9★</p>
+              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                En reseñas
+              </p>
+            </div>
           </div>
 
-          <dl className="mt-4 grid grid-cols-3 gap-6 border-t border-border pt-8">
-            <div className="flex flex-col gap-1">
-              <dt className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Años
-              </dt>
-              <dd className="font-serif text-3xl font-light md:text-4xl">22</dd>
-            </div>
-            <div className="flex flex-col gap-1">
-              <dt className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Caletas aliadas
-              </dt>
-              <dd className="font-serif text-3xl font-light md:text-4xl">14</dd>
-            </div>
-            <div className="flex flex-col gap-1">
-              <dt className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Especies de temporada
-              </dt>
-              <dd className="font-serif text-3xl font-light md:text-4xl">36</dd>
-            </div>
-          </dl>
+          <Link
+            href="/carta"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-red px-6 py-3 text-sm font-semibold text-white shadow transition-colors hover:bg-brand-red-dark"
+          >
+            Explorar la carta
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
