@@ -1,9 +1,9 @@
 "use client"
 
+import Image from "next/image"
 import { Copy, X } from "lucide-react"
 import { useEffect } from "react"
 import { toast } from "sonner"
-import { QrPlaceholder } from "@/components/qr-placeholder"
 import { formatPrice } from "@/lib/menu-data"
 import { cn } from "@/lib/utils"
 
@@ -16,8 +16,7 @@ const WALLET_CONFIG: Record<
     bg: string
     text: string
     accent: string
-    fg: string
-    seed: string
+    qrImage: string
     phone: string
     holder: string
   }
@@ -27,8 +26,7 @@ const WALLET_CONFIG: Record<
     bg: "bg-yape-purple",
     text: "text-white",
     accent: "bg-white text-yape-purple",
-    fg: "#722F8E",
-    seed: "fuyao-yape-987654321",
+    qrImage: "/qr-yape.png",
     phone: "+51 999 999 998",
     holder: "Chifa Fuyao S.A.C.",
   },
@@ -37,8 +35,7 @@ const WALLET_CONFIG: Record<
     bg: "bg-plin-blue",
     text: "text-white",
     accent: "bg-white text-plin-blue",
-    fg: "#0E7AB6",
-    seed: "fuyao-plin-123456789",
+    qrImage: "/qr-plin.jpeg",
     phone: "+51 999 999 998",
     holder: "Chifa Fuyao S.A.C.",
   },
@@ -126,8 +123,13 @@ export function QrModal({
 
         <div className="-mt-8 px-6 pb-6">
           <div className="mx-auto w-full rounded-2xl border border-border bg-white p-4 shadow-md">
-            <div className="aspect-square w-full">
-              <QrPlaceholder seed={cfg.seed} fg={cfg.fg} className="h-full w-full" />
+            <div className="relative aspect-square w-full">
+              <Image
+                src={cfg.qrImage}
+                alt={`QR code para pagar con ${cfg.name}`}
+                fill
+                className="object-contain p-2"
+              />
             </div>
           </div>
 

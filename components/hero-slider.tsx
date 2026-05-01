@@ -8,11 +8,7 @@ import { useCart } from "@/components/cart-context"
 import { formatPrice, MENU } from "@/lib/menu-data"
 import { cn } from "@/lib/utils"
 
-const HERO_DISH_IDS = [
-  "arroz-chaufa-especial",
-  "kam-lu-wantan",
-  "combinado-tallarines-chaufa",
-]
+const HERO_DISH_IDS = ["arroz-chaufa-especial", "kam-lu-wantan", "tallarin-saltado-pollo"]
 
 const HERO_SLIDES = HERO_DISH_IDS
   .map((id) => MENU.find((d) => d.id === id))

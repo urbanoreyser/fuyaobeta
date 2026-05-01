@@ -25,10 +25,10 @@ export const MENU: Dish[] = [
   {
     id: "arroz-chaufa-especial",
     name: "Arroz Chaufa Especial",
-    description:
-      "Arroz frito al wok con pollo, huevo, cebolla china, kion y salsa de soya al estilo tradicional.",
+    description: "",
     price: 18.0,
-    image: "/dishes/arroz-chaufa.jpg",
+    image:
+      "/dishes/arroz-chaufa.jpg",
     category: "arroces",
     badge: "Tradicional",
     rating: 4.9,
@@ -37,20 +37,19 @@ export const MENU: Dish[] = [
   {
     id: "arroz-chaufa-pollo",
     name: "Arroz Chaufa de Pollo",
-    description:
-      "Arroz salteado con pollo desmenuzado, huevo, cebollita china y un toque de aceite de ajonjolí.",
+    description: "",
     price: 16.0,
-    image: "/dishes/arroz-chaufa.jpg",
+    image:
+      "/dishes/arroz-chaufa.jpg",
     category: "arroces",
     rating: 4.7,
   },
   {
-    id: "aeropuerto",
-    name: "Aeropuerto Especial",
-    description:
-      "Combinado de chaufa y tallarín al wok con pollo, cerdo, langostinos, huevo y verduras.",
+    id: "arroz-chaufa-mariscos",
+    name: "Arroz Chaufa de Mariscos",
+    description: "",
     price: 24.0,
-    image: "/dishes/aeropuerto.jpg",
+    image: "/dishes/arroz-chaufa-mariscos.jpg",
     category: "arroces",
     badge: "Premium",
     rating: 4.8,
@@ -60,8 +59,7 @@ export const MENU: Dish[] = [
   {
     id: "tallarin-saltado-pollo",
     name: "Tallarín Saltado con Pollo",
-    description:
-      "Tallarines salteados al wok con pollo, brócoli, pimiento, sillao y un toque de jengibre.",
+    description: "",
     price: 16.5,
     image: "/dishes/tallarin-saltado-pollo.jpg",
     category: "tallarines",
@@ -70,24 +68,20 @@ export const MENU: Dish[] = [
     popular: true,
   },
   {
-    id: "combinado-tallarines-chaufa",
-    name: "Combinado Tallarines con Chaufa",
-    description:
-      "Media porción de chaufa especial junto a tallarín saltado con pollo y verduras al wok.",
-    price: 22.0,
-    image: "/dishes/combinado-tallarines-chaufa.jpg",
+    id: "tallarin-verduras",
+    name: "Tallarín con Verduras",
+    description: "",
+    price: 14.5,
+    image: "/dishes/tallarin-verduras.jpg",
     category: "tallarines",
-    badge: "Recomendado",
-    rating: 4.9,
-    popular: true,
+    rating: 4.6,
   },
   {
     id: "tallarin-especial-fuyao",
     name: "Tallarín Especial Fuyao",
-    description:
-      "Mezcla de pollo, carne, langostinos y verduras al wok con tallarines y salsa de la casa.",
+    description: "",
     price: 22.0,
-    image: "/dishes/tallarin-saltado-pollo.jpg",
+    image: "/dishes/tallarin-especial.jpg",
     category: "tallarines",
     badge: "De la Casa",
     rating: 4.8,
@@ -97,10 +91,10 @@ export const MENU: Dish[] = [
   {
     id: "kam-lu-wantan",
     name: "Kam Lu Wantán",
-    description:
-      "Wantanes crocantes bañados en salsa agridulce con langostinos, pollo, piña y verduras.",
+    description: "",
     price: 24.0,
-    image: "/dishes/kam-lu-wantan.jpg",
+    image:
+      "/dishes/kam-lu-wantan.jpg",
     category: "wok",
     badge: "Favorito",
     rating: 5.0,
@@ -109,8 +103,7 @@ export const MENU: Dish[] = [
   {
     id: "pollo-tipakay",
     name: "Pollo Tipakay",
-    description:
-      "Trozos de pollo apanado en salsa agridulce con piña, pimiento y cebolla, terminado al wok.",
+    description: "",
     price: 19.0,
     image: "/dishes/pollo-tipakay.jpg",
     category: "wok",
@@ -118,44 +111,41 @@ export const MENU: Dish[] = [
   },
   {
     id: "chijaukay",
-    name: "Pollo Chi Jau Kay",
-    description:
-      "Pollo crocante en salsa oscura de soya, kion y ajos con pimientos y cebolla china.",
+    name: "Pollo Chijaukay",
+    description: "",
     price: 19.5,
-    image: "/dishes/pollo-chi-jau-kay.jpg",
+    image: "/dishes/chijaukay.jpg",
     category: "wok",
-    badge: "Picante",
-    rating: 4.8,
+    badge: "Más Pedido",
+    rating: 4.9,
+    popular: true,
   },
 
   // Sopas
   {
     id: "sopa-wantan",
     name: "Sopa Wantán",
-    description:
-      "Caldo claro con wantanes rellenos, lonjas de pollo, langostinos y verduras al estilo cantonés.",
+    description: "",
     price: 18.0,
     image: "/dishes/sopa-wantan.jpg",
     category: "sopas",
     rating: 4.8,
   },
   {
-    id: "sopa-pollo-choclo",
-    name: "Sopa de Pollo con Choclo",
-    description:
-      "Sopa cremosa de pollo desmenuzado, choclo dulce y huevo batido en hilos, reconfortante.",
+    id: "Pollo-con-champinones-y-chaufa",
+    name: "Pollo con Champiñones y Chaufa",
+    description: "",
     price: 14.0,
-    image: "/dishes/sopa-pollo-choclo.jpg",
+    image: "/dishes/Pollo-con-champinones-y-chaufa.png",
     category: "sopas",
     rating: 4.6,
   },
   {
-    id: "sopa-fuchifu",
-    name: "Sopa Fuchifú Especial",
-    description:
-      "Caldo especial con langostinos, pollo, fideos de huevo y verduras frescas. La estrella de la casa.",
+    id: "sopa-fuyao-especial",
+    name: "Sopa Fuyao Especial",
+    description: "",
     price: 22.0,
-    image: "/dishes/sopa-fuchifu.jpg",
+    image: "/dishes/sopa-fuyao.jpg",
     category: "sopas",
     badge: "Especial",
     rating: 4.9,

@@ -8,7 +8,7 @@ export function StorySection() {
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="relative aspect-[5/4] overflow-hidden rounded-3xl border border-border shadow-sm">
           <Image
-            src="/dishes/combinado-tallarines-chaufa.jpg"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Combinado%20Tallarines%20con%20Chaufa-N7qhhngN5XHJT87aOAbGuT04aLuIEf.jpg"
             alt="Plato combinado de tallarín saltado con arroz chaufa"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

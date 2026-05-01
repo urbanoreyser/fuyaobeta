@@ -1,7 +1,9 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
-import { CheckCircle2, Clock, MapPin, Phone } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { CheckCircle2, Clock, Download, MapPin, Phone } from "lucide-react"
 import { formatPrice } from "@/lib/menu-data"
 import type { CartLine } from "@/components/cart-context"
 
@@ -32,6 +34,131 @@ export function OrderSuccess({
   address,
   phone,
 }: Props) {
+  const router = useRouter()
+
+  const handleDownloadPDF = () => {
+    // Build order details
+    const date = new Date().toLocaleDateString("es-PE", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    const time = new Date().toLocaleTimeString("es-PE", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+
+    const productsText = lines
+      .map((line) => `• ${line.dish.name} x${line.quantity} = ${formatPrice(line.dish.price * line.quantity)}`)
+      .join("\n")
+
+    const deliveryText = deliveryType === "delivery" ? "Delivery a domicilio" : "Recojo en tienda"
+
+    const paymentText = PAYMENT_LABEL[payment]
+
+    // Create PDF-like content
+    const pdfContent = `
+================================================================================
+                        FUYAO CHIFA - COMPROBANTE DE PEDIDO
+================================================================================
+
+INFORMACIÓN DEL PEDIDO
+================================================================================
+ID de Pedido:          ${orderNumber}
+Fecha:                 ${date}
+Hora:                  ${time}
+
+DATOS DEL CLIENTE
+================================================================================
+Nombre:                ${customerName}
+Teléfono:              ${phone || "—"}
+${address ? `Dirección:              ${address}` : ""}
+
+TIPO DE ENTREGA
+================================================================================
+${deliveryText}
+
+PRODUCTOS PEDIDOS
+================================================================================
+${productsText}
+
+RESUMEN DEL PAGO
+================================================================================
+Total:                 ${formatPrice(total)}
+Método de Pago:        ${paymentText}
+
+================================================================================
+Gracias por tu compra en Fuyao Chifa
+¡Esperamos que disfrutes tu pedido!
+================================================================================
+    `.trim()
+
+    // Create blob and download as PDF-like text file
+    const blob = new Blob([pdfContent], { type: "text/plain;charset=utf-8" })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = `Pedido-${orderNumber}.txt`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
+
+  const handleWhatsApp = () => {
+    const date = new Date().toLocaleDateString("es-PE", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+
+    const productsText = lines
+      .map(
+        (line) =>
+          `${line.dish.name} x${line.quantity} = ${formatPrice(line.dish.price * line.quantity)}`
+      )
+      .join("\n")
+
+    const deliveryText = deliveryType === "delivery" ? "Delivery a domicilio" : "Recojo en tienda"
+
+    const paymentText = {
+      yape: "Yape",
+      plin: "Plin",
+      cash: "Efectivo al recibir",
+    }[payment]
+
+    const message = `*COMPROBANTE DE PEDIDO FUYAO CHIFA*
+
+ID: ${orderNumber}
+Fecha: ${date}
+
+*Cliente:* ${customerName}
+*Teléfono:* ${phone}
+${address ? `*Dirección:* ${address}` : ""}
+
+*Entrega:* ${deliveryText}
+
+*Productos:*
+${productsText}
+
+*Total:* ${formatPrice(total)}
+*Pago:* ${paymentText}
+
+Gracias por tu compra 🙏`
+
+    // Create invisible link with whatsapp URI
+    const link = document.createElement("a")
+    link.href = `whatsapp://send?phone=51916638889&text=${encodeURIComponent(message)}`
+    link.style.display = "none"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    // Close modal and redirect after 50ms
+    setTimeout(() => {
+      router.push("/")
+    }, 50)
+  }
   return (
     <section className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
       <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
@@ -133,16 +260,29 @@ export function OrderSuccess({
             </ul>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-col gap-3 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+            <button
+              onClick={handleDownloadPDF}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-gold-dark px-4 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
+            >
+              <Download className="h-4 w-4" />
+              <span>Descargar Orden Pedido</span>
+            </button>
+            <button
+              onClick={handleWhatsApp}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
+            >
+              <span>Ir a WhatsApp</span>
+            </button>
             <Link
               href="/"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-red px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red-dark sm:flex-none"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-red px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-red-dark"
             >
               Volver al inicio
             </Link>
             <Link
               href="/carta"
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border bg-white px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-brand-red hover:text-brand-red sm:flex-none"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-brand-red hover:text-brand-red"
             >
               Hacer otro pedido
             </Link>

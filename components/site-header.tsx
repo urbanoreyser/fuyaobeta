@@ -28,8 +28,8 @@ export function SiteHeader() {
           <Phone className="h-4 w-4" aria-hidden />
           <span>
             Delivery disponible — Llama al{" "}
-            <a href="tel:+51999999998" className="font-semibold underline underline-offset-2">
-              +51 999 999 998
+            <a href="tel:+51916638889" className="font-semibold underline underline-offset-2">
+              +51 916 638 889
             </a>
           </span>
         </div>
@@ -77,11 +77,11 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-2 md:gap-3">
             <a
-              href="tel:+51999999998"
+              href="tel:+51916638889"
               className="hidden items-center gap-2 text-sm font-medium text-foreground/80 lg:flex"
             >
               <Phone className="h-4 w-4 text-brand-red" />
-              +51 999 999 998
+              +51 916 638 889
             </a>
 
             <Button asChild className="hidden bg-brand-red text-white hover:bg-brand-red-dark sm:inline-flex">

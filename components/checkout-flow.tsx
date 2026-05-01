@@ -34,7 +34,7 @@ type Confirmed = {
   phone: string
 }
 
-const DELIVERY_FEE = 0 // Free delivery in zone (placeholder)
+const DELIVERY_FEE = 3.0
 
 function generateOrderNumber() {
   const ts = Date.now().toString(36).slice(-4).toUpperCase()
@@ -52,7 +52,6 @@ export function CheckoutFlow() {
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
-  const [reference, setReference] = useState("")
   const [notes, setNotes] = useState("")
 
   const [confirmed, setConfirmed] = useState<Confirmed | null>(null)
@@ -294,15 +293,6 @@ export function CheckoutFlow() {
                         onChange={(e) => setAddress(e.target.value)}
                         required
                         placeholder="Av. Ejemplo 123, dpto 4B, Surco"
-                        className="w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm outline-none transition-colors focus:border-brand-red"
-                      />
-                    </Field>
-                    <Field label="Referencia (opcional)" className="sm:col-span-2">
-                      <input
-                        type="text"
-                        value={reference}
-                        onChange={(e) => setReference(e.target.value)}
-                        placeholder="Ej. Frente al parque, edificio rojo"
                         className="w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm outline-none transition-colors focus:border-brand-red"
                       />
                     </Field>

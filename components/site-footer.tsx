@@ -61,12 +61,12 @@ export function SiteFooter() {
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
-              <span>Av. Los Próceres 1450, Surco — Lima</span>
+              <span>Yahuar Huaca 102, Independencia 15332</span>
             </li>
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
-              <a href="tel:+51999999998" className="hover:text-brand-red">
-                +51 999 999 998
+              <a href="tel:+51916638889" className="hover:text-brand-red">
+                +51 916 638 889
               </a>
             </li>
             <li className="flex items-start gap-2">

@@ -18,7 +18,8 @@ export default function CartaPage() {
             12 platos preparados al wok
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Descubre toda nuestra selección de platos chino-peruanos, preparados al wok con los mejores ingredientes.
+            Elige tus favoritos, ajusta cantidades con los botones + y −, y completa tu pedido
+            cuando estés listo. La barra del carrito te seguirá al pie de la pantalla.
           </p>
         </div>
       </section>

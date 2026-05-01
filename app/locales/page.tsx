@@ -13,7 +13,7 @@ const SCHEDULE = [
   { day: "Domingo", hours: "12:00 pm — 10:00 pm" },
 ]
 
-const ADDRESS = "Av. Los Próceres 1450, Santiago de Surco, Lima"
+const ADDRESS = "Yahuar Huaca 102, Independencia 15332"
 const MAPS_URL = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}`
 const MAPS_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(
   ADDRESS,
@@ -78,10 +78,10 @@ export default function LocalesPage() {
                     Teléfono
                   </p>
                   <a
-                    href="tel:+51999999998"
+                    href="tel:+51916638889"
                     className="mt-0.5 block text-base font-medium text-foreground hover:text-brand-red"
                   >
-                    +51 999 999 998
+                    +51 916 638 889
                   </a>
                 </div>
               </li>
