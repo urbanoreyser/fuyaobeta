@@ -1,9 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { Copy, X } from "lucide-react"
+import { X } from "lucide-react"
 import { useEffect } from "react"
-import { toast } from "sonner"
 import { formatPrice } from "@/lib/menu-data"
 import { cn } from "@/lib/utils"
 
@@ -17,8 +16,6 @@ const WALLET_CONFIG: Record<
     text: string
     accent: string
     qrImage: string
-    phone: string
-    holder: string
   }
 > = {
   yape: {
@@ -27,8 +24,6 @@ const WALLET_CONFIG: Record<
     text: "text-white",
     accent: "bg-white text-yape-purple",
     qrImage: "/qr-yape.png",
-    phone: "+51 999 999 998",
-    holder: "Chifa Fuyao S.A.C.",
   },
   plin: {
     name: "Plin",
@@ -36,8 +31,6 @@ const WALLET_CONFIG: Record<
     text: "text-white",
     accent: "bg-white text-plin-blue",
     qrImage: "/qr-plin.jpeg",
-    phone: "+51 999 999 998",
-    holder: "Chifa Fuyao S.A.C.",
   },
 }
 
@@ -63,15 +56,6 @@ export function QrModal({
       document.body.style.overflow = ""
     }
   }, [onClose])
-
-  const copyPhone = async () => {
-    try {
-      await navigator.clipboard.writeText(cfg.phone.replace(/\s/g, ""))
-      toast.success("Número copiado al portapapeles")
-    } catch {
-      toast.error("No se pudo copiar el número")
-    }
-  }
 
   return (
     <div
@@ -128,40 +112,10 @@ export function QrModal({
                 src={cfg.qrImage}
                 alt={`QR code para pagar con ${cfg.name}`}
                 fill
-                className="object-contain p-2"
+                className="object-contain"
               />
             </div>
           </div>
-
-          <div className="mt-4 rounded-xl bg-secondary/60 p-4 text-sm">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Titular de la cuenta
-            </p>
-            <p className="mt-1 font-semibold text-foreground">{cfg.holder}</p>
-
-            <div className="mt-3 flex items-center justify-between gap-2">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Número {cfg.name}
-                </p>
-                <p className="mt-1 font-mono text-base font-semibold text-foreground">
-                  {cfg.phone}
-                </p>
-              </div>
-              <button
-                onClick={copyPhone}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-brand-red hover:text-brand-red"
-              >
-                <Copy className="h-3.5 w-3.5" />
-                Copiar
-              </button>
-            </div>
-          </div>
-
-          <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
-            Escanea el QR desde tu app {cfg.name}, paga el monto exacto y conserva el
-            comprobante. Confirma tu pedido al cerrar esta ventana.
-          </p>
 
           <button
             onClick={onClose}

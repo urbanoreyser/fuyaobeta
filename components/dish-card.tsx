@@ -25,7 +25,7 @@ export function DishCard({
         "group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg",
       )}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-secondary">
+      <div className="relative aspect-square w-full overflow-hidden bg-secondary">
         <Image
           src={dish.image || "/placeholder.svg"}
           alt={dish.name}
@@ -40,7 +40,7 @@ export function DishCard({
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-4 sm:p-5">
+      <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4">
         <div
           className="flex items-center gap-0.5 text-brand-gold"
           aria-label={`Calificación ${dish.rating} de 5`}
@@ -50,7 +50,7 @@ export function DishCard({
           ))}
         </div>
 
-        <h3 className="font-serif text-lg font-bold leading-snug text-foreground sm:text-xl">
+        <h3 className="font-serif text-sm font-bold leading-snug text-foreground sm:text-base line-clamp-2">
           {dish.name}
         </h3>
 
@@ -60,8 +60,8 @@ export function DishCard({
           </p>
         )}
 
-        <div className="mt-auto flex items-center justify-between gap-3 pt-2">
-          <p className="font-serif text-xl font-bold text-brand-gold-dark sm:text-2xl">
+        <div className="mt-auto flex items-center justify-between gap-2 pt-1">
+          <p className="font-serif text-base font-bold text-brand-gold-dark sm:text-lg">
             {formatPrice(dish.price)}
           </p>
 
@@ -71,22 +71,23 @@ export function DishCard({
                 add(dish.id)
                 toast.success(`${dish.name} añadido`)
               }}
-              className="inline-flex items-center gap-2 rounded-full bg-brand-red px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-red-dark"
+              className="inline-flex items-center gap-1.5 rounded-full bg-brand-red px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-brand-red-dark"
             >
-              <ShoppingCart className="h-4 w-4" />
-              Agregar
+              <ShoppingCart className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Agregar</span>
+              <span className="sm:hidden">+</span>
             </button>
           ) : (
-            <div className="inline-flex items-center gap-1 rounded-full border border-brand-red bg-white p-1">
+            <div className="inline-flex items-center gap-0.5 rounded-full border border-brand-red bg-white p-0.5">
               <button
                 onClick={() => decrement(dish.id)}
                 aria-label={`Disminuir cantidad de ${dish.name}`}
-                className="flex h-8 w-8 items-center justify-center rounded-full text-brand-red transition-colors hover:bg-brand-red hover:text-white"
+                className="flex h-6 w-6 items-center justify-center rounded-full text-brand-red transition-colors hover:bg-brand-red hover:text-white"
               >
-                <Minus className="h-4 w-4" />
+                <Minus className="h-3 w-3" />
               </button>
               <span
-                className="min-w-6 px-1 text-center text-sm font-bold text-foreground"
+                className="min-w-5 px-0.5 text-center text-xs font-bold text-foreground"
                 aria-live="polite"
               >
                 {qty}
@@ -94,9 +95,9 @@ export function DishCard({
               <button
                 onClick={() => increment(dish.id)}
                 aria-label={`Aumentar cantidad de ${dish.name}`}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-red text-white transition-colors hover:bg-brand-red-dark"
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-red text-white transition-colors hover:bg-brand-red-dark"
               >
-                <Plus className="h-4 w-4" />
+                <Plus className="h-3 w-3" />
               </button>
             </div>
           )}

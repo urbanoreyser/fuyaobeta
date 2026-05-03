@@ -22,6 +22,21 @@ import { cn } from "@/lib/utils"
 
 type DeliveryType = "delivery" | "pickup"
 type Payment = "yape" | "plin" | "cash"
+type DeliveryZone = "1" | "2" | "3" | "4"
+
+const DELIVERY_ZONE_FEES: Record<DeliveryZone, number> = {
+  "1": 3.0,
+  "2": 5.0,
+  "3": 7.0,
+  "4": 9.0,
+}
+
+const DELIVERY_ZONE_LABELS: Record<DeliveryZone, string> = {
+  "1": "1ra Zona - S/. 3.00",
+  "2": "2da Zona - S/. 5.00",
+  "3": "3ra Zona - S/. 7.00",
+  "4": "4ta Zona - S/. 9.00",
+}
 
 type Confirmed = {
   orderNumber: string
@@ -34,8 +49,6 @@ type Confirmed = {
   phone: string
 }
 
-const DELIVERY_FEE = 3.0
-
 function generateOrderNumber() {
   const ts = Date.now().toString(36).slice(-4).toUpperCase()
   const rand = Math.floor(Math.random() * 9000 + 1000)
@@ -46,6 +59,7 @@ export function CheckoutFlow() {
   const { lines, totalItems, subtotal, increment, decrement, remove, clear } = useCart()
 
   const [deliveryType, setDeliveryType] = useState<DeliveryType>("delivery")
+  const [deliveryZone, setDeliveryZone] = useState<DeliveryZone>("1")
   const [payment, setPayment] = useState<Payment>("yape")
   const [openWallet, setOpenWallet] = useState<WalletKind | null>(null)
 
@@ -56,9 +70,10 @@ export function CheckoutFlow() {
 
   const [confirmed, setConfirmed] = useState<Confirmed | null>(null)
 
+  const deliveryFee = deliveryType === "delivery" ? DELIVERY_ZONE_FEES[deliveryZone] : 0
   const total = useMemo(() => {
-    return subtotal + (deliveryType === "delivery" ? DELIVERY_FEE : 0)
-  }, [subtotal, deliveryType])
+    return subtotal + deliveryFee
+  }, [subtotal, deliveryFee])
 
   if (confirmed) {
     return (
@@ -243,14 +258,27 @@ export function CheckoutFlow() {
                   onClick={() => setDeliveryType("delivery")}
                   icon={<Bike className="h-5 w-5" />}
                   title="Delivery a domicilio"
-                  desc="Sin costo en la zona de cobertura · 30 min aprox."
-                />
+                >
+                  {deliveryType === "delivery" && (
+                    <select
+                      value={deliveryZone}
+                      onChange={(e) => setDeliveryZone(e.target.value as DeliveryZone)}
+                      onClick={(e) => e.stopPropagation()}
+                      className="mt-2 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm font-medium text-foreground outline-none focus:border-brand-red"
+                    >
+                      {(Object.keys(DELIVERY_ZONE_LABELS) as DeliveryZone[]).map((zone) => (
+                        <option key={zone} value={zone}>
+                          {DELIVERY_ZONE_LABELS[zone]}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </DeliveryOption>
                 <DeliveryOption
                   active={deliveryType === "pickup"}
                   onClick={() => setDeliveryType("pickup")}
                   icon={<Store className="h-5 w-5" />}
                   title="Recojo en tienda"
-                  desc="Sin costo · listo en 20 min en Av. Los Próceres 1450"
                 />
               </div>
             </div>
@@ -378,9 +406,13 @@ export function CheckoutFlow() {
                 </div>
                 <div className="flex items-center justify-between">
                   <dt className="text-muted-foreground">
-                    {deliveryType === "delivery" ? "Delivery" : "Recojo en tienda"}
+                    {deliveryType === "delivery" 
+                      ? `Delivery (${deliveryZone === "4" ? "4ta" : deliveryZone === "3" ? "3ra" : deliveryZone === "2" ? "2da" : "1ra"} Zona)` 
+                      : "Recojo en tienda"}
                   </dt>
-                  <dd className="font-medium text-emerald-600">Gratis</dd>
+                  <dd className={cn("font-medium", deliveryFee > 0 ? "text-foreground" : "text-emerald-600")}>
+                    {deliveryFee > 0 ? formatPrice(deliveryFee) : "Gratis"}
+                  </dd>
                 </div>
               </dl>
 
@@ -445,47 +477,51 @@ function DeliveryOption({
   onClick,
   icon,
   title,
-  desc,
+  children,
 }: {
   active: boolean
   onClick: () => void
   icon: React.ReactNode
   title: string
-  desc: string
+  children?: React.ReactNode
 }) {
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={(e) => e.key === "Enter" && onClick()}
       className={cn(
-        "flex items-start gap-3 rounded-2xl border p-4 text-left transition-all",
+        "flex flex-col rounded-2xl border p-4 text-left transition-all cursor-pointer",
         active
           ? "border-brand-red bg-brand-red/5 ring-2 ring-brand-red/20"
           : "border-border bg-white hover:border-brand-red/60",
       )}
     >
-      <span
-        className={cn(
-          "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
-          active ? "bg-brand-red text-white" : "bg-secondary text-foreground/70",
-        )}
-      >
-        {icon}
-      </span>
-      <span className="flex-1">
-        <span className="block font-semibold text-foreground">{title}</span>
-        <span className="mt-0.5 block text-sm text-muted-foreground">{desc}</span>
-      </span>
-      <span
-        className={cn(
-          "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border",
-          active ? "border-brand-red bg-brand-red" : "border-border bg-white",
-        )}
-        aria-hidden
-      >
-        {active && <span className="h-2 w-2 rounded-full bg-white" />}
-      </span>
-    </button>
+      <div className="flex items-start gap-3">
+        <span
+          className={cn(
+            "flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
+            active ? "bg-brand-red text-white" : "bg-secondary text-foreground/70",
+          )}
+        >
+          {icon}
+        </span>
+        <span className="flex-1">
+          <span className="block font-semibold text-foreground">{title}</span>
+        </span>
+        <span
+          className={cn(
+            "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border",
+            active ? "border-brand-red bg-brand-red" : "border-border bg-white",
+          )}
+          aria-hidden
+        >
+          {active && <span className="h-2 w-2 rounded-full bg-white" />}
+        </span>
+      </div>
+      {children}
+    </div>
   )
 }
 
