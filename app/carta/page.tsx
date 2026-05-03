@@ -3,7 +3,7 @@ import { MenuBrowser } from "@/components/menu-browser"
 export const metadata = {
   title: "Carta — Chifa Fuyao",
   description:
-    "Explora nuestra carta completa de arroces chaufa, tallarines, platos al wok y sopas. Pide directo desde aquí.",
+    "Explora nuestra carta completa de arroces chaufa, tallarines, platos al wok, menu y sopas. Pide directo desde aquí.",
 }
 
 export default function CartaPage() {
@@ -15,7 +15,7 @@ export default function CartaPage() {
             Nuestra carta
           </p>
           <h1 className="font-serif text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl text-balance">
-            12 platos preparados al wok
+            +20 platos preparados al wok
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Elige tus favoritos, ajusta cantidades con los botones + y −, y completa tu pedido
