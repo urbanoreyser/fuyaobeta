@@ -353,7 +353,7 @@ export const MENU: Dish[] = [
     name: "Pollo Chijaukay+Enrollado",
     description: "",
     price: 24.0,
-    image: "/dishes/ChijaukayPollo.jpg",
+    image: "/dishes/ChijaukayCombo.jpg",
     category: "combos",
     rating: 4.7,
   },

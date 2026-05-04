@@ -49,8 +49,8 @@ export function SiteHeader() {
               priority
             />
             <div className="leading-tight">
-              <p className="font-serif text-xl font-bold text-foreground">Fu yao</p>
-              <p className="text-[10px] font-semibold tracking-[0.2em] text-muted-foreground">
+              <p className="font-serif text-xl font-bold text-foreground">FU YAO</p>
+              <p className="text-[10px] font-semibold tracking-[0.2em] text-brand-gold-dark">
                 CHIFA
               </p>
             </div>
