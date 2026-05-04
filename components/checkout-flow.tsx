@@ -296,7 +296,7 @@ export function CheckoutFlow() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
-                    placeholder="Ej. María Fernández"
+                    placeholder="Ej. Luis Lopez"
                     className="w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm outline-none transition-colors focus:border-brand-red"
                   />
                 </Field>
@@ -320,7 +320,7 @@ export function CheckoutFlow() {
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         required
-                        placeholder="Av. Ejemplo 123, dpto 4B, Surco"
+                        placeholder="Av. Ejemplo 123, dpto 4B, Independencia"
                         className="w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm outline-none transition-colors focus:border-brand-red"
                       />
                     </Field>

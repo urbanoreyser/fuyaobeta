@@ -151,17 +151,17 @@ export function OrderSuccess({
 
     const message = `*NOTA DE PEDIDO - FU YAO CHIFA*
     
-<hr className="divider" />
+*-----------------------------------------------------------------*
 ID: ${orderNumber}
 Fecha: ${date}
 *Cliente:* ${customerName}
 *Telefono:* ${phone}
 ${address ? `*Direccion:* ${address}` : ""}
-<hr className="divider" />
+*-------------------------------------------*
 *Productos:*
 ${productsText}
-<hr className="divider" />
-*Delivery:* DeliveryType ${deliveryType == "delivery"}
+*-------------------------------------------*
+*Delivery:* ${deliveryText} (delivery === "delivery" ? DELIVERY_FEE : 0)
 *Pago:* ${paymentText}
 *Total:* ${formatPrice(total)}
 

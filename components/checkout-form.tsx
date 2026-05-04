@@ -150,7 +150,7 @@ export function CheckoutForm() {
                 <Label htmlFor="name">Nombre completo *</Label>
                 <Input
                   id="name"
-                  placeholder="Ej. María Pérez"
+                  placeholder="Ej. Luis Lopez"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
@@ -173,7 +173,7 @@ export function CheckoutForm() {
                     <Label htmlFor="address">Dirección *</Label>
                     <Input
                       id="address"
-                      placeholder="Av. Aviación 2890, San Borja"
+                      placeholder="Yahuar Huaca 102, Independencia 15332"
                       value={form.address}
                       onChange={(e) => setForm({ ...form, address: e.target.value })}
                       required
@@ -211,7 +211,7 @@ export function CheckoutForm() {
                 onClick={() => setDelivery("delivery")}
                 icon={<Bike className="h-5 w-5" aria-hidden />}
                 title="Delivery a domicilio"
-                description="Entregamos en San Borja y zonas cercanas."
+                description="Entregamos en Independencia y zonas cercanas."
                 tag="Sin costo"
               />
               <DeliveryOption
@@ -219,7 +219,7 @@ export function CheckoutForm() {
                 onClick={() => setDelivery("pickup")}
                 icon={<Store className="h-5 w-5" aria-hidden />}
                 title="Recojo en tienda"
-                description="Pasa por nuestro local en Av. Aviación 2890."
+                description="Pasa por nuestro local Yahuar Huaca 102, Independencia"
                 tag="Sin costo"
               />
             </div>
