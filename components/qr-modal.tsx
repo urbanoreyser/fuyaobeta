@@ -117,6 +117,10 @@ export function QrModal({
             </div>
           </div>
 
+          <p className="mt-3 text-center text-sm text-muted-foreground">
+            Pagar con QR o mediante el número +51 916 638 889
+          </p>
+
           <button
             onClick={onClose}
             className={cn(

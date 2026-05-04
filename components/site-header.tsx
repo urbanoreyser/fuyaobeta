@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, Phone, ShoppingCart, X } from "lucide-react"
@@ -39,15 +40,17 @@ export function SiteHeader() {
       <div className="border-b border-border bg-background/95 backdrop-blur">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4">
           <Link href="/" className="flex items-center gap-3">
-            <div
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red text-white"
-              aria-hidden
-            >
-              <span className="font-serif text-2xl leading-none">福</span>
-            </div>
+            <Image
+              src="/logo-fuyao.jpg"
+              alt="Chifa Fuyao"
+              width={60}
+              height={60}
+              className="h-14 w-14 rounded-full object-cover"
+              priority
+            />
             <div className="leading-tight">
-              <p className="font-serif text-2xl font-bold text-foreground">Fuyao</p>
-              <p className="text-[10px] font-semibold tracking-[0.2em] text-brand-gold-dark">
+              <p className="font-serif text-xl font-bold text-foreground">Fu yao</p>
+              <p className="text-[10px] font-semibold tracking-[0.2em] text-muted-foreground">
                 CHIFA
               </p>
             </div>

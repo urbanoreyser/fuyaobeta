@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Facebook, Instagram, MapPin, Phone, Clock } from "lucide-react"
 
@@ -7,14 +8,15 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-4">
         <div className="space-y-3">
           <Link href="/" className="flex items-center gap-3">
-            <div
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-red text-white"
-              aria-hidden
-            >
-              <span className="font-serif text-2xl leading-none">福</span>
-            </div>
+            <Image
+              src="/logo-fuyao.jpg"
+              alt="Chifa Fuyao"
+              width={60}
+              height={60}
+              className="h-14 w-14 rounded-full object-cover"
+            />
             <div className="leading-tight">
-              <p className="font-serif text-2xl font-bold">Fuyao</p>
+              <p className="font-serif text-xl font-bold text-foreground">FU YAO</p>
               <p className="text-[10px] font-semibold tracking-[0.2em] text-brand-gold-dark">
                 CHIFA
               </p>
@@ -100,9 +102,8 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} Chifa Fuyao. Todos los derechos reservados.</p>
-          <p>Hecho con sazón al wok 🥢</p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-2 px-4 py-5 text-xs text-muted-foreground text-center">
+          <p>© 2026 Chifa Fuyao. All rights reserved - Developed by Digital Solutions & AI</p>
         </div>
       </div>
     </footer>

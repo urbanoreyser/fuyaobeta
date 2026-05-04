@@ -1,4 +1,4 @@
-export type Category = "arroces" | "tallarines" | "wok" | "menu" | "sopas" | "bebidas"
+export type Category = "arroces" | "tallarines" | "wok" | "menu" | "combos" | "sopas" | "bebidas"
 
 export type Dish = {
   id: string
@@ -18,6 +18,7 @@ export const CATEGORIES: { value: Category | "todos"; label: string }[] = [
   { value: "tallarines", label: "Tallarines" },
   { value: "wok", label: "Platos al Wok" },
   { value: "menu", label: "Menu" },
+  { value: "combos", label: "Combos" },
   { value: "sopas", label: "Sopas" },
   { value: "bebidas", label: "Bebidas" },
 ]
@@ -30,7 +31,7 @@ export const MENU: Dish[] = [
     description: "",
     price: 19.0,
     image:
-      "/dishes/Chaufa.png",
+      "/dishes/ChaufaCarta.jpg",
     category: "arroces",
     badge: "Tradicional",
     rating: 4.9,
@@ -71,14 +72,14 @@ export const MENU: Dish[] = [
     name: "Aeropuerto con Carne",
     description: "",
     price: 22.0,
-    image: "/dishes/ArrozChaufaCarne.jpg",
+    image: "/dishes/AeropuertoCarne.jpg",
     category: "arroces",
     badge: "Premium",
     rating: 4.7,
   },
     {
     id: "combinado-pollo",
-    name: "Combinado de Pollo en Trozos",
+    name: "Combinado de Pollo",
     description: "",
     price: 23.0,
     image: "/dishes/CombinadoPollo.jpg",
@@ -135,7 +136,7 @@ export const MENU: Dish[] = [
     description: "",
     price: 23.5,
     image:
-      "/dishes/KamluWantan.png",
+      "/dishes/KanluWantan.jpg",
     category: "wok",
     badge: "Favorito",
     rating: 5.0,
@@ -155,7 +156,7 @@ export const MENU: Dish[] = [
     name: "Pollo Chijaukay",
     description: "",
     price: 21.5,
-    image: "/dishes/Chijaukay.png",
+    image: "/dishes/ChijaukayPollo.jpg",
     category: "wok",
     badge: "Más Pedido",
     rating: 4.8,
@@ -220,7 +221,7 @@ export const MENU: Dish[] = [
     name: "Chaufa de Pollo",
     description: "",
     price: 13.0,
-    image: "/dishes/Chaufa.png",
+    image: "/dishes/ChaufaPollo.jpg",
     category: "menu",
     rating: 4.8,
   },
@@ -303,7 +304,7 @@ export const MENU: Dish[] = [
     name: "Chijaukay con Pollo",
     description: "",
     price: 17.0,
-    image: "/dishes/Chijaukay.png",
+    image: "/dishes/ChijaukayPollo.jpg",
     category: "menu",
     rating: 4.5,
   },
@@ -312,7 +313,7 @@ export const MENU: Dish[] = [
     name: "Enrollado con Pollo",
     description: "",
     price: 18.0,
-    image: "/dishes/EnrolladoPollo.png",
+    image: "/dishes/EnrolladoPollo.jpg",
     category: "menu",
     badge: "Especial",
     rating: 4.7,
@@ -346,7 +347,45 @@ export const MENU: Dish[] = [
     rating: 4.4,
   },
 
-  // Sopas
+    // Combos
+  {
+    id: "chijaukay-combo",
+    name: "Pollo Chijaukay+Enrollado",
+    description: "",
+    price: 24.0,
+    image: "/dishes/ChijaukayPollo.jpg",
+    category: "combos",
+    rating: 4.7,
+  },
+  {
+    id: "tipakay-combo",
+    name: "Pollo Chijaukay+Tikapay",
+    description: "",
+    price: 24.0,
+    image: "/dishes/TipakayCombo.png",
+    category: "combos",
+    rating: 4.9,
+  },
+    {
+    id: "enrollado-combo",
+    name: "Pollo Tikapay+Enrollado",
+    description: "",
+    price: 24.0,
+    image: "/dishes/EnrolladoCombo.png",
+    category: "combos",
+    rating: 4.8,
+  },
+  {
+    id: "verdura-combo",
+    name: "Pollo con Verdura+Enrollado",
+    description: "",
+    price: 24.0,
+    image: "/dishes/VerdurasCombo.jpg",
+    category: "combos",
+    rating: 4.5,
+  },
+
+    // Sopas
   {
     id: "sopa-wantan",
     name: "Sopa Wantán",
@@ -385,7 +424,8 @@ export const MENU: Dish[] = [
     badge: "Especial",
     rating: 4.9,
   },
-    // Bebidas
+
+      // Bebidas
   {
     id: "gaseosa-personal",
     name: "Inka Kola Personal",
@@ -397,7 +437,7 @@ export const MENU: Dish[] = [
   },
   {
     id: "gaseosa-litro",
-    name: "Gaseosa 1 1/2",
+    name: "Inka Kola 1 1/2",
     description: "",
     price: 9.0,
     image: "/dishes/InkaKola.jpg",
