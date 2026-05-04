@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { CheckCircle2, Download } from "lucide-react"
 import { jsPDF } from "jspdf"
 import { formatPrice } from "@/lib/menu-data"
@@ -34,8 +33,7 @@ export function OrderSuccess({
   address,
   phone,
 }: Props) {
-  const router = useRouter()
-
+  
   const handleDownloadPDF = () => {
     const date = new Date().toLocaleDateString("es-PE", {
       year: "numeric",
@@ -171,12 +169,9 @@ ${productsText}
 
 Gracias por tu compra`
 
-    // Create invisible link with whatsapp URI
-    const link = document.createElement("a")
-    link.href = `whatsapp://send?phone=51916638889&text=${encodeURIComponent(message)}`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    // Open WhatsApp Web/App in browser with the message
+    const whatsappUrl = `https://wa.me/51916638889?text=${encodeURIComponent(message)}
+    window.open(whatsappUrl, "_blank")
 
     // Close and redirect after 50ms
     setTimeout(() => {
