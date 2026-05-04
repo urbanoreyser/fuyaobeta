@@ -149,22 +149,21 @@ export function OrderSuccess({
 
     const paymentText = PAYMENT_LABEL[payment]
 
-    const message = `*COMPROBANTE DE PEDIDO FUYAO CHIFA*
-
+    const message = `*NOTA DE PEDIDO - FU YAO CHIFA*
+    
+<hr className="divider" />
 ID: ${orderNumber}
 Fecha: ${date}
-
 *Cliente:* ${customerName}
 *Telefono:* ${phone}
 ${address ? `*Direccion:* ${address}` : ""}
-
-*Entrega:* ${deliveryText}
-
+<hr className="divider" />
 *Productos:*
 ${productsText}
-
-*Total:* ${formatPrice(total)}
+<hr className="divider" />
+*Delivery:* DeliveryType ${deliveryType == "delivery"}
 *Pago:* ${paymentText}
+*Total:* ${formatPrice(total)}
 
 Gracias por tu compra`
 
