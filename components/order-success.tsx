@@ -33,7 +33,6 @@ export function OrderSuccess({
   address,
   phone,
 }: Props) {
-  
   const handleDownloadPDF = () => {
     const date = new Date().toLocaleDateString("es-PE", {
       year: "numeric",
@@ -150,7 +149,7 @@ export function OrderSuccess({
 
     const paymentText = PAYMENT_LABEL[payment]
 
-    const message = `*NOTA DE PEDIDO FUYAO CHIFA*
+    const message = `*COMPROBANTE DE PEDIDO FUYAO CHIFA*
 
 ID: ${orderNumber}
 Fecha: ${date}
@@ -170,13 +169,8 @@ ${productsText}
 Gracias por tu compra`
 
     // Open WhatsApp Web/App in browser with the message
-    const whatsappUrl = `https://wa.me/51916638889?text=${encodeURIComponent(message)}
+    const whatsappUrl = `https://wa.me/51916638889?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
-
-    // Close and redirect after 50ms
-    setTimeout(() => {
-      router.push("/")
-    }, 50)
   }
 
   return (
