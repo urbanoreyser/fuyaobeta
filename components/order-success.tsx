@@ -49,7 +49,7 @@ export function OrderSuccess({
     const deliveryText = deliveryType === "delivery" ? "Delivery a domicilio" : "Recojo en tienda"
     const paymentText = PAYMENT_LABEL[payment]
 
-    // Create PDF
+       // Create PDF
     const doc = new jsPDF()
     const pageWidth = doc.internal.pageSize.getWidth()
     
@@ -58,12 +58,12 @@ export function OrderSuccess({
     // Title
     doc.setFontSize(18)
     doc.setFont("helvetica", "bold")
-    doc.text("FUYAO CHIFA - ORDEN DE PEDIDO", pageWidth / 2, y, { align: "center" })
-    
+       doc.text("FUYAO CHIFA - ORDEN DE PEDIDO", pageWidth / 2, y, { align: "center" })
+   "-------------------------------------------------------"
     y += 15
     doc.setFontSize(11)
     doc.setFont("helvetica", "normal")
-    
+     
     // Order info section
     doc.text(`ID de Pedido: ${orderNumber}`, 20, y)
     y += 7
@@ -75,7 +75,7 @@ export function OrderSuccess({
     
     // Customer info
     doc.setFont("helvetica", "bold")
-    doc.text("DATOS DEL CLIENTE", 20, y)
+    doc.text("Datos de Cliente", 20, y)
     y += 7
     doc.setFont("helvetica", "normal")
     doc.text(`Cliente: ${customerName}`, 20, y)
@@ -86,21 +86,12 @@ export function OrderSuccess({
       doc.text(`Direccion: ${address}`, 20, y)
       y += 7
     }
-    
-    y += 5
-    "--------------------------------------"
-    // Delivery type
-    doc.setFont("helvetica", "bold")
-    doc.text("TIPO DE ENTREGA", 20, y)
-    y += 7
-    doc.setFont("helvetica", "normal")
-    doc.text(deliveryText, 20, y)
-    
+      
     y += 12
-    
+    "--------------------------------------"
     // Products
     doc.setFont("helvetica", "bold")
-    doc.text("PRODUCTOS", 20, y)
+    doc.text("Productos", 20, y)
     y += 7
     doc.setFont("helvetica", "normal")
     
@@ -114,10 +105,13 @@ export function OrderSuccess({
     "--------------------------------------"
     // Payment summary
     doc.setFont("helvetica", "bold")
-    doc.text("RESUMEN DEL PAGO", 20, y)
+    doc.text("Resumen de Pago", 20, y)
     y += 7
     doc.setFont("helvetica", "normal")
     doc.text(`Metodo de Pago: ${paymentText}`, 20, y)
+    y += 7
+    doc.setFont("helvetica", "normal")
+    doc.text(`Delivery: ${deliveryFee > 0 ? formatPrice(deliveryFee) : "Gratis (Recojo en tienda)"}`, 20, y)
     y += 7
     doc.setFont("helvetica", "bold")
     doc.text(`Total: ${formatPrice(total)}`, 20, y)
