@@ -86,7 +86,7 @@ export function OrderSuccess({
     }
     
     y += 5
-    
+    "--------------------------------------"
     // Delivery type
     doc.setFont("helvetica", "bold")
     doc.text("TIPO DE ENTREGA", 20, y)
@@ -109,7 +109,7 @@ export function OrderSuccess({
     })
     
     y += 5
-    
+    "--------------------------------------"
     // Payment summary
     doc.setFont("helvetica", "bold")
     doc.text("RESUMEN DEL PAGO", 20, y)
@@ -151,9 +151,9 @@ export function OrderSuccess({
 
     const message = `*NOTA DE PEDIDO - FU YAO CHIFA*
     
-*-----------------------------------------------------------------*
+*-------------------------------------------*
 ID: ${orderNumber}
-Fecha: ${date}
+*Fecha:*${date}
 *Cliente:* ${customerName}
 *Telefono:* ${phone}
 ${address ? `*Direccion:* ${address}` : ""}
@@ -161,11 +161,12 @@ ${address ? `*Direccion:* ${address}` : ""}
 *Productos:*
 ${productsText}
 *-------------------------------------------*
-*Delivery:* ${deliveryText} (delivery === "delivery" ? DELIVERY_FEE : 0)
+*Delivery:* ${deliveryText} ${deliveryType === "delivery" ? deliveryType : 0}
 *Pago:* ${paymentText}
 *Total:* ${formatPrice(total)}
 
 Gracias por tu compra`
+
 
     // Open WhatsApp Web/App in browser with the message
     const whatsappUrl = `https://wa.me/51916638889?text=${encodeURIComponent(message)}`
