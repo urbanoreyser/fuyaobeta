@@ -47,6 +47,7 @@ type Confirmed = {
   lines: CartLine[]
   address?: string
   phone: string
+  deliveryFee: number
 }
 
 function generateOrderNumber() {
@@ -86,6 +87,7 @@ export function CheckoutFlow() {
         lines={confirmed.lines}
         address={confirmed.address}
         phone={confirmed.phone}
+        deliveryFee={confirmed.deliveryFee}
       />
     )
   }
@@ -135,6 +137,7 @@ export function CheckoutFlow() {
       lines: lines.map((l) => ({ ...l })),
       address: deliveryType === "delivery" ? address.trim() : undefined,
       phone: phone.trim(),
+      deliveryFee,
     }
 
     setConfirmed(snapshot)

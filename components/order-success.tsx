@@ -15,6 +15,7 @@ type Props = {
   lines: CartLine[]
   address?: string
   phone?: string
+  deliveryFee?: number
 }
 
 const PAYMENT_LABEL: Record<Props["payment"], string> = {
@@ -32,6 +33,7 @@ export function OrderSuccess({
   lines,
   address,
   phone,
+  deliveryFee = 0,
 }: Props) {
   const handleDownloadPDF = () => {
     const date = new Date().toLocaleDateString("es-PE", {
@@ -153,7 +155,7 @@ export function OrderSuccess({
     
 *-------------------------------------------*
 ID: ${orderNumber}
-*Fecha:*${date}
+Fecha: ${date}
 *Cliente:* ${customerName}
 *Telefono:* ${phone}
 ${address ? `*Direccion:* ${address}` : ""}
@@ -161,7 +163,7 @@ ${address ? `*Direccion:* ${address}` : ""}
 *Productos:*
 ${productsText}
 *-------------------------------------------*
-*Delivery:* ${deliveryText} ${deliveryType === "delivery" ? deliveryType : 0}
+*Delivery:* ${deliveryFee > 0 ? formatPrice(deliveryFee) : "Gratis (Recojo en tienda)"}
 *Pago:* ${paymentText}
 *Total:* ${formatPrice(total)}
 
